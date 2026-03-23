@@ -20,9 +20,13 @@ function App() {
             path="/*"
             element={
               <ProtectedRoute>
-                <div className="min-h-screen bg-slate-100 text-slate-900 md:flex">
+                <div className="min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-cyan-950 text-white md:flex">
                   <Sidebar />
-                  <main className="flex-1 p-3 md:p-6">
+                  <main className="flex-1 p-4 md:p-6">
+                    <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl bg-slate-800/40 p-4 text-white shadow-xl backdrop-blur-lg border border-white/10">
+                      <h1 className="text-xl font-extrabold tracking-tight">✨ Productivity Hub</h1>
+                      <p className="text-sm text-slate-300">A sleek dashboard for your tasks, notes, and goals.</p>
+                    </div>
                     <Routes>
                       <Route path="/" element={<Navigate to="/dashboard" replace />} />
                       <Route path="/dashboard" element={<Dashboard />} />

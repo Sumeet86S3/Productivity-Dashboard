@@ -54,35 +54,47 @@ const Tasks = () => {
   };
 
   return (
-    <div className="p-4">
-      <div className="flex flex-col sm:flex-row sm:items-end gap-2 mb-4">
-        <div className="grow">
+    <div className="space-y-4">
+      <div className="rounded-2xl border border-white/10 bg-white/10 p-4 shadow-xl backdrop-blur-lg">
+        <h2 className="mb-2 text-2xl font-extrabold text-white">Tasks</h2>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end">
           <input
-            className="w-full p-2 rounded border border-slate-300"
+            className="grow rounded-lg border border-white/20 bg-slate-900/60 px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-cyan-400"
             placeholder="New task title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          <button
+            onClick={addTask}
+            className="rounded-lg bg-gradient-to-r from-cyan-500 to-indigo-500 px-4 py-2 font-semibold text-white shadow-lg transition hover:scale-[1.01] hover:shadow-xl"
+          >
+            Add Task
+          </button>
         </div>
-        <button onClick={addTask} className="px-3 py-2 rounded bg-indigo-500 text-white hover:bg-indigo-600">
-          Add Task
-        </button>
       </div>
-      {error && <div className="mb-3 text-red-600">{error}</div>}
-      <div className="space-y-2">
+      {error && <div className="rounded-lg border border-red-400 bg-red-500/20 p-2 text-red-100">{error}</div>}
+      <div className="space-y-3">
         {tasks.map((task) => (
-          <div key={task._id} className="flex items-center justify-between bg-white rounded p-3 shadow-sm">
-            <div>
-              <p className={`font-medium ${task.completed ? 'line-through text-slate-400' : ''}`}>{task.title}</p>
-            </div>
-            <div className="flex items-center gap-2">
+          <div
+            key={task._id}
+            className={`flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/10 p-4 text-white shadow-lg backdrop-blur-lg ${
+              task.completed ? 'opacity-80' : 'opacity-100'
+            }`}
+          >
+            <p className={`text-lg ${task.completed ? 'line-through text-slate-300' : 'text-white'}`}>
+              {task.title}
+            </p>
+            <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => toggleTask(task)}
-                className="rounded bg-slate-200 px-2 py-1 text-sm"
+                className="rounded-lg border border-white/20 bg-slate-700/70 px-3 py-1 text-sm text-white transition hover:bg-slate-600"
               >
                 {task.completed ? 'Undo' : 'Complete'}
               </button>
-              <button onClick={() => deleteTask(task._id)} className="rounded bg-red-500 px-2 py-1 text-sm text-white">
+              <button
+                onClick={() => deleteTask(task._id)}
+                className="rounded-lg bg-red-500 px-3 py-1 text-sm text-white transition hover:bg-red-600"
+              >
                 Delete
               </button>
             </div>

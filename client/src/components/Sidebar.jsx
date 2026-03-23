@@ -11,10 +11,10 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="h-full p-4 bg-slate-900 text-white w-64 space-y-4">
-      <div>
-        <div className="text-xl font-bold">Productivity</div>
-        <div className="text-xs text-slate-300">Personal dashboard</div>
+    <aside className="h-full w-full max-w-xs p-4 bg-slate-900/90 text-white shadow-2xl backdrop-blur-xl border-r border-white/10 md:w-72">
+      <div className="mb-6 rounded-xl border border-white/15 bg-slate-950/40 p-4">
+        <div className="text-2xl font-bold tracking-tight">⚡ Productivity</div>
+        <div className="text-xs uppercase tracking-wider text-slate-300">Your mission control</div>
       </div>
       <nav className="flex flex-col gap-2">
         {links.map((link) => (
@@ -22,8 +22,10 @@ const Sidebar = () => {
             to={link.to}
             key={link.to}
             className={({ isActive }) =>
-              `block px-3 py-2 rounded-md text-sm ${
-                isActive ? 'bg-indigo-500 text-white' : 'text-slate-200 hover:bg-slate-700'
+              `block rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                isActive
+                  ? 'bg-gradient-to-r from-indigo-500 to-cyan-500 text-white shadow-lg'
+                  : 'text-slate-200 hover:bg-slate-700/70 hover:text-white'
               }`
             }
           >
@@ -33,11 +35,11 @@ const Sidebar = () => {
       </nav>
       <button
         onClick={logout}
-        className="mt-4 w-full px-3 py-2 rounded-md bg-red-500 hover:bg-red-600"
+        className="mt-6 w-full rounded-xl bg-red-500 px-4 py-2 text-white transition hover:bg-red-600"
       >
         Logout
       </button>
-    </div>
+    </aside>
   );
 };
 

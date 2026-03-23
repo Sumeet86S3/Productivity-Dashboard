@@ -25,17 +25,17 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white flex items-center justify-center p-4">
-      <div className="w-full max-w-md bg-slate-800 p-6 rounded-xl shadow-lg">
-        <h1 className="text-2xl font-bold mb-4">Login</h1>
-        {error && <div className="mb-3 rounded border border-red-400 bg-red-500/20 p-2">{error}</div>}
-        <form onSubmit={handleSubmit} className="space-y-3">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top,_rgba(99,102,241,0.7),_rgba(15,23,42,0.94))] flex items-center justify-center p-4 text-white">
+      <div className="w-full max-w-md rounded-3xl border border-white/20 bg-slate-900/70 p-8 shadow-[0_20px_60px_-20px_rgba(14,165,233,0.6)] backdrop-blur-xl">
+        <h1 className="text-3xl font-extrabold mb-4">Welcome Back</h1>
+        {error && <div className="mb-3 rounded-xl border border-red-400 bg-red-500/20 p-3">{error}</div>}
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full p-2 rounded bg-slate-700 border border-slate-600"
+            className="w-full rounded-xl border border-white/20 bg-slate-800/70 px-4 py-3 text-sm text-white placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
             required
           />
           <input
@@ -43,19 +43,22 @@ const Login = () => {
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 rounded bg-slate-700 border border-slate-600"
+            className="w-full rounded-xl border border-white/20 bg-slate-800/70 px-4 py-3 text-sm text-white placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-cyan-400"
             required
           />
           <button
             type="submit"
-            className="w-full rounded bg-indigo-500 py-2 text-white hover:bg-indigo-600"
+            className="w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 py-3 text-sm font-bold text-white shadow-lg transition hover:scale-[1.01] hover:brightness-110"
             disabled={loading}
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
         </form>
         <p className="mt-4 text-sm text-slate-300">
-          Don't have an account? <Link to="/register" className="text-indigo-300">Register</Link>
+          Don't have an account?{' '}
+          <Link to="/register" className="font-semibold text-cyan-300 hover:text-cyan-200">
+            Register
+          </Link>
         </p>
       </div>
     </div>

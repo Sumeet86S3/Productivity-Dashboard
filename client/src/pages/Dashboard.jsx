@@ -28,26 +28,31 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-3">Dashboard</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-3">
-        <div className="bg-white p-4 rounded shadow">
-          <p className="text-sm uppercase text-slate-400">Tasks</p>
-          <p className="text-3xl font-bold">{counts.tasks}</p>
+    <div className="space-y-4">
+      <section className="rounded-2xl border border-white/10 bg-white/10 p-5 shadow-2xl backdrop-blur-lg">
+        <div className="flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-extrabold tracking-tight text-white">Welcome back!</h2>
+            <p className="text-sm text-slate-300">Your progress at a glance.</p>
+          </div>
+          <div className="rounded-lg bg-slate-950/50 px-4 py-2 text-sm text-slate-200">All systems nominal</div>
         </div>
-        <div className="bg-white p-4 rounded shadow">
-          <p className="text-sm uppercase text-slate-400">Completed</p>
-          <p className="text-3xl font-bold">{counts.completed}</p>
-        </div>
-        <div className="bg-white p-4 rounded shadow">
-          <p className="text-sm uppercase text-slate-400">Notes</p>
-          <p className="text-3xl font-bold">{counts.notes}</p>
-        </div>
-        <div className="bg-white p-4 rounded shadow">
-          <p className="text-sm uppercase text-slate-400">Goals</p>
-          <p className="text-3xl font-bold">{counts.goals}</p>
-        </div>
-      </div>
+      </section>
+
+      <section className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {[
+          { label: 'Tasks', value: counts.tasks, color: 'from-cyan-400 to-blue-500' },
+          { label: 'Completed', value: counts.completed, color: 'from-emerald-400 to-teal-500' },
+          { label: 'Notes', value: counts.notes, color: 'from-fuchsia-400 to-purple-500' },
+          { label: 'Goals', value: counts.goals, color: 'from-amber-400 to-orange-500' },
+        ].map((item) => (
+          <article key={item.label} className="rounded-2xl border border-white/15 bg-white/10 p-4 shadow-xl backdrop-blur-lg">
+            <p className="text-xs uppercase tracking-widest text-slate-300 mb-2">{item.label}</p>
+            <p className="text-4xl font-bold text-white">{item.value}</p>
+            <div className={`mt-3 h-2 w-full rounded-full bg-white/10 bg-gradient-to-r ${item.color}`} />
+          </article>
+        ))}
+      </section>
     </div>
   );
 };

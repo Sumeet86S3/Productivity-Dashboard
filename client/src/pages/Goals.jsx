@@ -57,53 +57,68 @@ const Goals = () => {
   };
 
   return (
-    <div className="p-4">
-      <div className="mb-4 rounded bg-white p-3 shadow-sm">
-        <h3 className="font-bold mb-2">Add Goal</h3>
-        <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
+    <div className="space-y-4">
+      <div className="rounded-2xl border border-white/10 bg-white/10 p-4 shadow-xl backdrop-blur-lg">
+        <h2 className="mb-2 text-2xl font-extrabold text-white">Goals</h2>
+        <div className="grid gap-2 md:grid-cols-3">
           <input
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Goal title"
-            className="w-full p-2 border border-slate-300 rounded"
+            className="w-full rounded-lg border border-white/20 bg-slate-900/60 px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
           />
           <input
             type="number"
             value={progress}
             onChange={(e) => setProgress(Number(e.target.value))}
             placeholder="Progress"
-            className="w-full p-2 border border-slate-300 rounded"
+            className="w-full rounded-lg border border-white/20 bg-slate-900/60 px-3 py-2 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
             min={0}
             max={100}
           />
-          <button onClick={addGoal} className="rounded bg-indigo-500 px-3 py-2 text-white">
+          <button
+            onClick={addGoal}
+            className="rounded-lg bg-gradient-to-r from-emerald-400 to-teal-500 px-4 py-2 font-semibold text-white shadow-lg transition hover:scale-[1.01]"
+          >
             Add Goal
           </button>
         </div>
       </div>
-      {error && <div className="mb-3 text-red-600">{error}</div>}
-      <div className="space-y-2">
+      {error && <div className="rounded-lg border border-red-400 bg-red-500/20 p-2 text-red-100">{error}</div>}
+      <div className="space-y-3">
         {goals.map((goal) => (
-          <div key={goal._id} className="bg-white rounded p-3 shadow-sm">
-            <div className="flex flex-wrap items-center justify-between gap-3">
+          <div key={goal._id} className="rounded-2xl border border-white/10 bg-white/10 p-4 shadow-lg backdrop-blur-lg">
+            <div className="mb-2 flex flex-wrap items-center justify-between gap-3">
               <div>
-                <p className="font-semibold">{goal.title}</p>
-                <p className="text-xs text-slate-500">Progress: {goal.progress}%</p>
+                <h3 className="text-lg font-semibold text-white">{goal.title}</h3>
+                <p className="text-sm text-slate-300">Progress: {goal.progress}%</p>
               </div>
               <div className="flex gap-2">
-                <button onClick={() => updateProgress(goal, -10)} className="rounded bg-slate-200 px-2 py-1 text-xs">
+                <button
+                  onClick={() => updateProgress(goal, -10)}
+                  className="rounded-lg border border-white/20 bg-slate-700/70 px-3 py-1 text-xs text-white transition hover:bg-slate-500"
+                >
                   -10
                 </button>
-                <button onClick={() => updateProgress(goal, 10)} className="rounded bg-indigo-500 px-2 py-1 text-xs text-white">
+                <button
+                  onClick={() => updateProgress(goal, 10)}
+                  className="rounded-lg bg-emerald-500 px-3 py-1 text-xs text-white transition hover:bg-emerald-600"
+                >
                   +10
                 </button>
-                <button onClick={() => deleteGoal(goal._id)} className="rounded bg-red-500 px-2 py-1 text-xs text-white">
+                <button
+                  onClick={() => deleteGoal(goal._id)}
+                  className="rounded-lg bg-red-500 px-3 py-1 text-xs text-white transition hover:bg-red-600"
+                >
                   Delete
                 </button>
               </div>
             </div>
-            <div className="mt-2 h-2 w-full rounded bg-slate-200">
-              <div className="h-2 rounded bg-indigo-500" style={{ width: `${goal.progress}%` }} />
+            <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+              <div
+                className="h-2 rounded-full bg-gradient-to-r from-emerald-400 to-teal-500 transition-all"
+                style={{ width: `${goal.progress}%` }}
+              />
             </div>
           </div>
         ))}
